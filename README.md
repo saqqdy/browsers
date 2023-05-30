@@ -2,7 +2,7 @@
 
 # @browsers/monorepo
 
-Some simple utilities for nodejs
+Some simple utilities for browsers
 
 [![NPM version][npm-image]][npm-url]
 [![Codacy Badge][codacy-image]][codacy-url]
@@ -14,32 +14,47 @@ Some simple utilities for nodejs
 
 ## Function list
 
-- find yarn workspace root: [@browsers/yarn-workspace-root](https://github.com/saqqdy/browsers/tree/master/packages/yarn-workspace-root)
+- A simple function for mounting css: [mount-css](https://github.com/saqqdy/browsers/tree/master/packages/mount-css)
 - find workspace root: [mount-css](https://github.com/saqqdy/browsers/tree/master/packages/mount-css)
 
 ## Install
 
-e.g: use `workspace-root`
+e.g: use `mount-css`
 
 ```shell
 # by pnpm
-pnpm install workspace-root
+pnpm install mount-css
 
 # by npm
-npm install -D workspace-root
+npm install -D mount-css
 
 # by yarn
-yarn add workspace-root
+yarn add mount-css
 ```
 
 ## Usage
 
-```js
-import { workspaceRoot } from 'workspace-root'
+### General use
 
-workspaceRoot().then(path => {
-  console.log('The workspace root is: ', path) // /Users/user/path/of/package/root or null
-})
+```js
+import mountCss from 'mount-css'
+
+mountCss('css url', options)
+```
+
+2. by require
+
+```js
+const mountCss = require('mount-css')
+
+mountCss('css url', options)
+```
+
+### Use CDN resource
+
+```html
+<!-- head -->
+<script src="https://unpkg.com/mount-css@1.2.0/dist/index.global.prod.js"></script>
 ```
 
 ## Issues & Support

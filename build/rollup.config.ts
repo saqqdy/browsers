@@ -17,12 +17,13 @@ for (const {
 	cjs,
 	mjs,
 	// dts,
+	browser,
 	target,
 	exportType = 'auto'
 } of packages) {
 	if (build === false) continue
 	const dirName = name.replace(/\./g, sep)
-	const pkg = require(`packages/${dirName}/package.json`)
+	const pkg = require(resolve(__dirname, `../packages/${dirName}/package.json`))
 	const banner =
 		'/*!\n' +
 		' * ' +
@@ -64,16 +65,14 @@ for (const {
 			output.push({
 				file: `packages/${dirName}/dist/${fn.replace(/\.ts$/, '.mjs')}`,
 				exports: exportType,
-				banner,
 				format: 'es'
 			})
 		}
 		// output cjs
 		if (cjs !== false) {
 			output.push({
-				file: `packages/${dirName}/dist/${fn.replace(/\.ts$/, '.cjs')}`,
+				file: `packages/${dirName}/dist/${fn.replace(/\.ts$/, '.cjs.js')}`,
 				exports: exportType,
-				banner,
 				format: 'cjs'
 			})
 		}
@@ -81,7 +80,7 @@ for (const {
 		if (iife !== false && fn === 'index.ts') {
 			output.push(
 				{
-					file: `packages/${dirName}/dist/${fn}.iife.js`,
+					file: `packages/${dirName}/dist/${fn}.global.js`,
 					format: 'iife',
 					name: iifeName,
 					extend: true,
@@ -92,11 +91,37 @@ for (const {
 					]
 				},
 				{
-					file: `packages/${dirName}/dist/${fn}.iife.min.js`,
+					file: `packages/${dirName}/dist/${fn}.global.prod.js`,
 					format: 'iife',
 					name: iifeName,
 					extend: true,
 					globals: iifeGlobals,
+					plugins: [
+						// injectNodeKitCore,
+						minify({
+							minify: true
+						}),
+						bannerPlugin({
+							content: banner
+						})
+					]
+				}
+			)
+		}
+		// browser
+		if (browser !== false && fn === 'index.ts') {
+			output.push(
+				{
+					file: `packages/${dirName}/dist/${fn}.global.js`,
+					format: 'es',
+					banner,
+					plugins: [
+						// injectNodeKitCore,
+					]
+				},
+				{
+					file: `packages/${dirName}/dist/${fn}.global.prod.js`,
+					format: 'es',
 					plugins: [
 						// injectNodeKitCore,
 						minify({

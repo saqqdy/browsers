@@ -1,7 +1,7 @@
 {
 	"extends": "../../tsconfig.json",
-	"exclude": ["__tests__", "../../temp"],
 	"compilerOptions": {
+		"target": "ES5",
 		"outDir": "dist",
 		"sourceMap": true,
 		"declaration": true,
