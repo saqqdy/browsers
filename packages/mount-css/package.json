@@ -26,12 +26,11 @@
 		"src": "src",
 		"typings": "typings"
 	},
-	"dependencies": {},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.34.4",
+		"@microsoft/api-extractor": "^7.35.1",
 		"@types/micromatch": "^4.0.2",
-		"eslint": "^8.38.0",
-		"prettier": "^2.8.7"
+		"eslint": "^8.41.0",
+		"prettier": "^2.8.8"
 	},
 	"pnpm": {
 		"peerDependencyRules": {
