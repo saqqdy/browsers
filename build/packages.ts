@@ -10,8 +10,7 @@ export const packages: PackageManifest[] = [
 	{
 		name: 'mount-css',
 		pkgName: 'mount-css',
-		iife: false,
-		submodules: true,
+		// iife: false,
 		display: 'mount-css'
 	}
 ]

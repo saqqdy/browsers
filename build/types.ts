@@ -3,20 +3,18 @@ export interface PackageManifest {
 	pkgName: string
 	display: string
 	addon?: boolean
-	author?: string
 	description?: string
 	external?: string[]
 	globals?: Record<string, string>
 	manualImport?: boolean
 	deprecated?: boolean
-	submodules?: boolean
 	build?: boolean
 	iife?: boolean
+	iifeName?: string
 	cjs?: boolean
 	mjs?: boolean
-	dts?: boolean
 	browser?: boolean
-	extractType?: boolean
-	target?: string
-	exportType?: 'auto' | 'default' | 'named' | 'none'
+	types?: boolean
+	extractTypes?: boolean
+	target?: string // esbuild target
 }

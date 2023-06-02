@@ -1,5 +1,4 @@
-const { resolve } = require('path')
-const pkg = require('../package.json')
+import pkg from '../package.json' assert { type: 'json' }
 
 export const banner =
 	'/*!\n' +
@@ -16,17 +15,8 @@ export const banner =
 	' saqqdy<https://github.com/saqqdy> \n' +
 	' * Released under the MIT License.\n' +
 	' */'
-export const bannerText =
-	pkg.name +
-	' v' +
-	pkg.version +
-	'\n' +
-	pkg.description +
-	'\n' +
-	'(c) 2021-' +
-	new Date().getFullYear() +
-	' saqqdy<https://github.com/saqqdy> \n' +
-	'Released under the MIT License.'
+
+export const version = pkg.version
 
 export const extensions = [
 	'.js',
@@ -41,10 +31,3 @@ export const extensions = [
 	'.es',
 	'.json'
 ]
-
-export const alias = {
-	'@': resolve(__dirname, '../src'),
-	browsers: resolve(__dirname, './')
-}
-
-export const jsexclude = /node_modules/
