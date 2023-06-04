@@ -1,6 +1,6 @@
 {
-	"name": "mount-css",
-	"description": "A simple function for mounting css",
+	"name": "mount-script",
+	"description": "A simple function for mounting javascript",
 	"version": "1.2.0-beta.1",
 	"packageManager": "pnpm@8.5.1",
 	"main": "dist/index.cjs.js",
@@ -43,21 +43,24 @@
 		}
 	},
 	"keywords": [
-		"mount-css",
-		"load-css",
-		"load-style",
+		"mount-script",
+		"mount-javascript",
+		"load-javascript",
+		"load-script",
+		"load-js",
+		"js-url",
 		"saqqdy"
 	],
 	"license": "MIT",
 	"author": "saqqdy <https://github.com/saqqdy>",
-	"homepage": "https://github.com/saqqdy/browsers/tree/master/packages/mount-css#readme",
+	"homepage": "https://github.com/saqqdy/browsers/tree/master/packages/mount-script#readme",
 	"bugs": {
 		"url": "https://github.com/saqqdy/browsers/issues"
 	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/saqqdy/browsers.git",
-		"directory": "packages/mount-css"
+		"directory": "packages/mount-script"
 	},
 	"publishConfig": {
 		"registry": "https://registry.npmjs.org",

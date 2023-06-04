@@ -1,6 +1,6 @@
 {
-	"name": "mount-css",
-	"description": "A simple function for mounting css",
+	"name": "load-source",
+	"description": "A simple function for load js/image/css/style",
 	"version": "1.2.0-beta.1",
 	"packageManager": "pnpm@8.5.1",
 	"main": "dist/index.cjs.js",
@@ -28,6 +28,12 @@
 		"dist",
 		"typings"
 	],
+	"dependencies": {
+		"mount-css": "workspace:*",
+		"mount-image": "workspace:*",
+		"mount-script": "workspace:*",
+		"mount-style": "workspace:*"
+	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.35.1",
 		"eslint": "^8.41.0",
@@ -43,21 +49,25 @@
 		}
 	},
 	"keywords": [
-		"mount-css",
-		"load-css",
+		"load-source",
+		"load-javascript",
+		"load-script",
+		"load-js",
+		"load-image",
 		"load-style",
+		"load-css",
 		"saqqdy"
 	],
 	"license": "MIT",
 	"author": "saqqdy <https://github.com/saqqdy>",
-	"homepage": "https://github.com/saqqdy/browsers/tree/master/packages/mount-css#readme",
+	"homepage": "https://github.com/saqqdy/browsers/tree/master/packages/load-source#readme",
 	"bugs": {
 		"url": "https://github.com/saqqdy/browsers/issues"
 	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/saqqdy/browsers.git",
-		"directory": "packages/mount-css"
+		"directory": "packages/load-source"
 	},
 	"publishConfig": {
 		"registry": "https://registry.npmjs.org",

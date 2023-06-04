@@ -14,22 +14,25 @@ Some simple utilities for browsers
 
 ## Function list
 
+- A simple function for load js/image/css/style: [load-source](https://github.com/saqqdy/browsers/tree/master/packages/load-source)
 - A simple function for mounting css: [mount-css](https://github.com/saqqdy/browsers/tree/master/packages/mount-css)
-- find workspace root: [mount-css](https://github.com/saqqdy/browsers/tree/master/packages/mount-css)
+- A simple function for mounting javascript: [mount-script](https://github.com/saqqdy/browsers/tree/master/packages/mount-script)
+- A simple function for mounting image: [mount-image](https://github.com/saqqdy/browsers/tree/master/packages/mount-image)
+- A simple function for mounting css style codes: [mount-style](https://github.com/saqqdy/browsers/tree/master/packages/mount-style)
 
 ## Install
 
-e.g: use `mount-css`
+e.g: use `load-source`
 
 ```shell
 # by pnpm
-pnpm install mount-css
+pnpm install load-source
 
 # by npm
-npm install -D mount-css
+npm install -D load-source
 
 # by yarn
-yarn add mount-css
+yarn add load-source
 ```
 
 ## Usage
@@ -37,24 +40,24 @@ yarn add mount-css
 ### General use
 
 ```js
-import mountCss from 'mount-css'
+import loadSource from 'load-source'
 
-mountCss('css url', options)
+loadSource('js/image/css/style', options)
 ```
 
 2. by require
 
 ```js
-const mountCss = require('mount-css')
+const loadSource = require('load-source')
 
-mountCss('css url', options)
+loadSource('js/image/css/style', options)
 ```
 
 ### Use CDN resource
 
 ```html
 <!-- head -->
-<script src="https://unpkg.com/mount-css@1.2.0/dist/index.global.prod.js"></script>
+<script src="https://unpkg.com/load-source@1.2.0/dist/index.global.prod.js"></script>
 ```
 
 ## Issues & Support

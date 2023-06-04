@@ -54,7 +54,7 @@ mountCss('css url', options)
 
 ```html
 <!-- head -->
-<script src="https://unpkg.com/mount-css@1.0.0/dist/index.global.prod.js"></script>
+<script src="https://unpkg.com/mount-css@1.2.0/dist/index.global.prod.js"></script>
 ```
 
 ## Support & Issues

@@ -46,16 +46,16 @@ const require = createRequire(import.meta.url)
 const configs: Config[] = []
 
 for (const {
-	globals = {},
+	// globals = {},
 	name,
 	iifeName,
-	external = [],
+	// external = [],
 	iife,
 	build,
 	cjs,
 	mjs,
-	browser,
-	target
+	browser
+	// target
 } of packages) {
 	if (build === false) continue
 	const dirName = name.replace(/\./g, sep)
@@ -277,8 +277,7 @@ function createEntry(config: Config) {
 			'mount-script',
 			'mount-image',
 			'mount-style',
-			'load-source',
-			'use-downloads'
+			'load-source'
 		)
 	}
 

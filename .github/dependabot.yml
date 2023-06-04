@@ -18,7 +18,55 @@ updates:
         update-types: ['version-update:semver-patch']
 
   - package-ecosystem: npm
+    directory: /packages/load-source
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    ignore:
+      - dependency-name: 'aws*'
+      - dependency-name: typescript
+        versions: [4.x]
+      - dependency-name: '*'
+        update-types: ['version-update:semver-patch']
+
+  - package-ecosystem: npm
     directory: /packages/mount-css
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    ignore:
+      - dependency-name: 'aws*'
+      - dependency-name: typescript
+        versions: [4.x]
+      - dependency-name: '*'
+        update-types: ['version-update:semver-patch']
+
+  - package-ecosystem: npm
+    directory: /packages/mount-script
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    ignore:
+      - dependency-name: 'aws*'
+      - dependency-name: typescript
+        versions: [4.x]
+      - dependency-name: '*'
+        update-types: ['version-update:semver-patch']
+
+  - package-ecosystem: npm
+    directory: /packages/mount-image
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    ignore:
+      - dependency-name: 'aws*'
+      - dependency-name: typescript
+        versions: [4.x]
+      - dependency-name: '*'
+        update-types: ['version-update:semver-patch']
+
+  - package-ecosystem: npm
+    directory: /packages/mount-style
     schedule:
       interval: weekly
     open-pull-requests-limit: 5

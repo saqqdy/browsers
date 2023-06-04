@@ -25,7 +25,7 @@ for (const { name, pkgName } of packages) {
 	const dirName = name.replace(/\./g, sep)
 	const cwd = name === 'monorepo' ? ROOT : join(PACKAGE, dirName)
 	const PKG_FILE = join(cwd, 'package.json')
-	const pkgJson = readJSONSync(PKG_FILE)
+	const pkgJson = readJSONSync(PKG_FILE)!
 	const newPkgJson = JSON.parse(JSON.stringify(pkgJson))
 	for (const { pkgName: pkg } of packages) {
 		if (pkg in ((newPkgJson.dependencies as Record<string, unknown>) || {})) {

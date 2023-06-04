@@ -1,8 +1,8 @@
-import _babel, { type Options } from '@rollup/plugin-babel'
+import _babel, { type RollupBabelInputPluginOptions } from '@rollup/plugin-babel'
 import type { Plugin } from 'rollup'
 import { extensions } from '../config'
 
-const babel = (options: Options = {}): Plugin =>
+const babel = (options: RollupBabelInputPluginOptions = {}): Plugin =>
 	_babel(
 		Object.assign(
 			{
