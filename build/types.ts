@@ -5,6 +5,7 @@ export interface PackageManifest {
 	addon?: boolean
 	description?: string
 	external?: string[]
+	externalUmd?: string[]
 	globals?: Record<string, string>
 	manualImport?: boolean
 	deprecated?: boolean

@@ -5,10 +5,9 @@ const terser = (options: Options = {}): Plugin =>
 	_terser(
 		Object.assign(
 			{
-				format: {
-					comments: false
-				},
-				compress: false
+				// format: {
+				// 	comments: false
+				// }
 			},
 			options
 		)

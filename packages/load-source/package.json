@@ -1,8 +1,8 @@
 {
 	"name": "load-source",
 	"description": "A simple function for load js/image/css/style",
-	"version": "1.2.0-beta.1",
-	"packageManager": "pnpm@8.5.1",
+	"version": "1.2.0-beta.2",
+	"packageManager": "pnpm@8.6.0",
 	"main": "dist/index.cjs.js",
 	"module": "dist/index.esm-bundler.js",
 	"browser": "dist/index.esm-browser.js",

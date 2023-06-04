@@ -24,6 +24,9 @@ export interface Config {
 	minify?: boolean
 	transpile?: boolean
 	iifeName?: string
+	external?: string[]
+	externalUmd?: string[]
+	globals?: Record<string, string>
 	banner?: string
 	env: 'development' | 'production'
 	plugins?: Plugin[]
@@ -46,10 +49,11 @@ const require = createRequire(import.meta.url)
 const configs: Config[] = []
 
 for (const {
-	// globals = {},
+	globals = {},
 	name,
 	iifeName,
-	// external = [],
+	external = [],
+	externalUmd = [],
 	iife,
 	build,
 	cjs,
@@ -83,6 +87,7 @@ for (const {
 		input: join(PROJECT_ROOT, 'index.ts'),
 		file: join(PROJECT_ROOT, 'dist', 'index.esm-bundler.js'),
 		format: 'es',
+		external,
 		env: 'development'
 	})
 
@@ -94,6 +99,8 @@ for (const {
 				file: join(PROJECT_ROOT, 'dist', 'index.esm-browser.js'),
 				format: 'es',
 				browser: true,
+				banner,
+				external,
 				env: 'development'
 			},
 			{
@@ -102,6 +109,8 @@ for (const {
 				format: 'es',
 				browser: true,
 				minify: true,
+				banner,
+				external,
 				env: 'production'
 			}
 		)
@@ -113,6 +122,7 @@ for (const {
 			input: join(PROJECT_ROOT, 'index.ts'),
 			file: join(PROJECT_ROOT, 'dist', 'index.mjs'),
 			format: 'es',
+			external,
 			env: 'development'
 		})
 	}
@@ -123,6 +133,7 @@ for (const {
 			input: join(PROJECT_ROOT, HAS_INDEX_DEFAULT ? 'index.default.ts' : 'index.ts'),
 			file: join(PROJECT_ROOT, 'dist', 'index.cjs.js'),
 			format: 'cjs',
+			external,
 			env: 'development'
 		})
 	}
@@ -135,7 +146,9 @@ for (const {
 				file: join(PROJECT_ROOT, 'dist', 'index.global.js'),
 				format: 'iife',
 				iifeName,
+				globals,
 				banner,
+				externalUmd,
 				env: 'development'
 			},
 			{
@@ -144,96 +157,13 @@ for (const {
 				format: 'iife',
 				minify: true,
 				iifeName,
+				globals,
 				banner,
+				externalUmd,
 				env: 'production'
 			}
 		)
 	}
-
-	// const input = `packages/${dirName}/index.ts`
-	// const output: OutputOptions[] = []
-	// // output mjs
-	// if (mjs !== false) {
-	// 	output.push({
-	// 		file: `packages/${dirName}/dist/${fn.replace(/\.ts$/, '.mjs')}`,
-	// 		exports: 'auto',
-	// 		format: 'es'
-	// 	})
-	// }
-	// // output cjs
-	// if (cjs !== false) {
-	// 	output.push({
-	// 		file: `packages/${dirName}/dist/${fn.replace(/\.ts$/, '.cjs.js')}`,
-	// 		exports: 'auto',
-	// 		format: 'cjs'
-	// 	})
-	// }
-	// // output iife
-	// if (iife !== false && fn === 'index.ts') {
-	// 	output.push(
-	// 		{
-	// 			file: `packages/${dirName}/dist/${fn}.global.js`,
-	// 			format: 'iife',
-	// 			name: iifeName,
-	// 			extend: true,
-	// 			globals: iifeGlobals,
-	// 			banner,
-	// 			plugins: [
-	// 				// injectNodeKitCore,
-	// 			]
-	// 		},
-	// 		{
-	// 			file: `packages/${dirName}/dist/${fn}.global.prod.js`,
-	// 			format: 'iife',
-	// 			name: iifeName,
-	// 			extend: true,
-	// 			globals: iifeGlobals,
-	// 			plugins: [
-	// 				// injectNodeKitCore,
-	// 				minify({
-	// 					minify: true
-	// 				}),
-	// 				bannerPlugin({
-	// 					content: banner
-	// 				})
-	// 			]
-	// 		}
-	// 	)
-	// }
-	// // browser
-	// if (browser !== false && fn === 'index.ts') {
-	// 	output.push(
-	// 		{
-	// 			file: `packages/${dirName}/dist/${fn}.global.js`,
-	// 			format: 'es',
-	// 			banner,
-	// 			plugins: [
-	// 				// injectNodeKitCore,
-	// 			]
-	// 		},
-	// 		{
-	// 			file: `packages/${dirName}/dist/${fn}.global.prod.js`,
-	// 			format: 'es',
-	// 			plugins: [
-	// 				// injectNodeKitCore,
-	// 				minify({
-	// 					minify: true
-	// 				}),
-	// 				bannerPlugin({
-	// 					content: banner
-	// 				})
-	// 			]
-	// 		}
-	// 	)
-	// }
-
-	// // create library options
-	// options.push({
-	// 	input,
-	// 	output,
-	// 	plugins: [nodeResolve, target ? esbuild({ target }) : esbuild(), filesize],
-	// 	external: [...externals, ...external]
-	// })
 }
 
 function createEntries() {
@@ -243,7 +173,6 @@ function createEntries() {
 function createEntry(config: Config) {
 	const isGlobalBuild = config.format === 'iife'
 	const isTypeScript = config.input.endsWith('.ts')
-	const banner = config.banner
 
 	const _config: Options = {
 		external: [],
@@ -264,21 +193,17 @@ function createEntry(config: Config) {
 		}
 	}
 
-	if (isGlobalBuild || config.browser) _config.output.banner = banner
+	if (config.banner && (isGlobalBuild || config.browser)) _config.output.banner = config.banner
 
-	if (isGlobalBuild) {
-		_config.output.name = _config.output.name || 'jsCool'
+	if (isGlobalBuild && config.iifeName) {
+		_config.output.name = config.iifeName
 	}
 
 	if (!isGlobalBuild) {
-		_config.external.push(
-			'core-js',
-			'mount-css',
-			'mount-script',
-			'mount-image',
-			'mount-style',
-			'load-source'
-		)
+		_config.external.push('core-js')
+		if (config.external) _config.external = _config.external.concat(config.external)
+	} else if (config.externalUmd) {
+		_config.external = _config.external.concat(config.externalUmd)
 	}
 
 	_config.plugins.push(replace(), nodeResolve(), commonjs)
