@@ -1,7 +1,7 @@
 {
 	"name": "mount-image",
 	"description": "A simple function for mounting image",
-	"version": "1.2.0-beta.2",
+	"version": "1.2.0-beta.3",
 	"packageManager": "pnpm@8.6.0",
 	"main": "dist/index.cjs.js",
 	"module": "dist/index.esm-bundler.js",
@@ -30,7 +30,7 @@
 	],
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.35.1",
-		"eslint": "^8.41.0",
+		"eslint": "^8.42.0",
 		"prettier": "^2.8.8"
 	},
 	"pnpm": {
