@@ -51,7 +51,7 @@ jobs:
       - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ./packages/mount-image/.npmrc
       - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ./packages/mount-style/.npmrc
 
-      - run: pnpm pub --test
+      - run: pnpm pub
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
