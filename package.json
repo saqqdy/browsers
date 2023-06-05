@@ -1,7 +1,7 @@
 {
 	"name": "@browsers/monorepo",
 	"description": "Collection of common JavaScript / TypeScript utilities for browsers",
-	"version": "1.2.0-beta.3",
+	"version": "1.2.0",
 	"packageManager": "pnpm@8.6.0",
 	"main": "index.js",
 	"files": [
@@ -15,6 +15,7 @@
 		"push": "tscjs scripts/push",
 		"build": "tscjs scripts/build",
 		"build:rollup": "cross-env NODE_OPTIONS=\"--max-old-space-size=6144\" rollup -c build/rollup.config.ts --configPlugin @rollup/plugin-typescript",
+		"build:es5": "cross-env BABEL_ENV=es5 pnpm run build:rollup",
 		"watch": "tscjs scripts/build --watch",
 		"pub": "tscjs scripts/publish",
 		"unpub": "tscjs scripts/unpublish",
