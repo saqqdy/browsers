@@ -22,8 +22,8 @@ importers:
         specifier: ^5.3.0
         version: 5.3.0(eslint@8.42.0)(prettier@2.8.8)(typescript@5.1.3)
       '@node-kit/extra.fs':
-        specifier: ^2.5.1
-        version: 2.5.1
+        specifier: ^3.2.0
+        version: 3.2.0
       '@rollup/plugin-babel':
         specifier: ^6.0.3
         version: 6.0.3(rollup@3.23.0)
@@ -2349,6 +2349,11 @@ packages:
 
   /@node-kit/extra.fs@2.5.1:
     resolution: {integrity: sha512-cj0gMQ+yE4jNmCrtz1TEXYMX+zNOJEGxGy1YzG2IBek0ndKszIYRxyLbIz3URh1MSTMGT+f9Zxy3iARB8vVP9g==}
+    dev: true
+
+  /@node-kit/extra.fs@3.2.0:
+    resolution: {integrity: sha512-BtGZcB4ffMneAyKd2qy0umOURc7kMjgNOQlEQNqgkQwcwoGejqiJLQpzKVhAr2waBx7OLZx+/3sNzGgngSzx7w==}
+    hasBin: true
     dev: true
 
   /@node-kit/extra.path@2.5.1:
